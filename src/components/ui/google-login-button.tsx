@@ -1,3 +1,5 @@
+'use client'
+
 import { auth } from "@/app/lib/firebase/client";
 import { Button } from "./button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
