@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
+
 import './globals.css'
 import Link from 'next/link'
 import { AuthProvider } from '@/context/auth'
 import { AuthButtons } from '@/components/ui/auth-buttons'
+import { Poppins } from 'next/font/google'
+import { HomeIcon } from 'lucide-react'
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-})
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
 export const metadata: Metadata = {
@@ -29,13 +25,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <nav className="bg-sky-950 text-white p-5 h-24 flex items-center justify-between">
-            <Link href="/">Fire Homes</Link>
+        <body className={`${poppins.className} antialiased`}>
+          <nav className="bg-sky-950 text-white p-5 h-24 flex items-center justify-between z-10 relative">
+            <Link
+              href="/"
+              className="text-3xl tracking-widest flex gap-2 items-center uppercase"
+            >
+              <HomeIcon />
+              <span>Fire Homes</span>
+            </Link>
 
-            <ul>
+            <ul className="flex gap-6 items-center">
+              <li>
+                <Link
+                  href="/property-search"
+                  className="uppercase tracking-widest hover:underline"
+                >
+                  Property search
+                </Link>
+              </li>
               <AuthButtons />
             </ul>
           </nav>
