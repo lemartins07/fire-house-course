@@ -10,5 +10,9 @@ export default function GoogleLoginButton() {
     auth?.loginWithGoogle()
   }
 
-  return <Button onClick={handleLogin}>Sign in with Google</Button>
+  return (
+    <Button onClick={handleLogin} className="w-full">
+      Sign in with Google
+    </Button>
+  )
 }
