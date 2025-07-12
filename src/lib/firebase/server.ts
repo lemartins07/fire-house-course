@@ -1,5 +1,6 @@
 import { initializeApp, ServiceAccount } from 'firebase-admin'
 import { getApps } from 'firebase-admin/app'
+import { Auth, getAuth } from 'firebase-admin/auth'
 import { Firestore, getFirestore } from 'firebase-admin/firestore'
 
 const serviceAccount = {
@@ -24,5 +25,6 @@ const app = !currentApps.length
   : currentApps[0]
 
 const firestore: Firestore = getFirestore(app)
+const auth: Auth = getAuth(app)
 
-export { app, firestore }
+export { app, firestore, auth }
