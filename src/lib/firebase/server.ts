@@ -1,5 +1,9 @@
-import { initializeApp, ServiceAccount } from 'firebase-admin'
-import { getApps } from 'firebase-admin/app'
+import {
+  initializeApp,
+  cert,
+  getApps,
+  ServiceAccount,
+} from 'firebase-admin/app'
 import { Auth, getAuth } from 'firebase-admin/auth'
 import { Firestore, getFirestore } from 'firebase-admin/firestore'
 
@@ -21,7 +25,9 @@ const serviceAccount = {
 const currentApps = getApps()
 
 const app = !currentApps.length
-  ? initializeApp(serviceAccount as ServiceAccount)
+  ? initializeApp({
+      credential: cert(serviceAccount as ServiceAccount),
+    })
   : currentApps[0]
 
 const firestore: Firestore = getFirestore(app)
