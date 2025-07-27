@@ -22,6 +22,8 @@ export const setToken = async ({ token, refreshToken }: setTokenType) => {
     }
 
     const userRecord = await auth.getUser(verifiedToken.uid)
+    console.log('User Record:', userRecord)
+    console.log('ADMIN_EMAIL:', process.env.ADMIN_EMAIL)
     if (
       process.env.ADMIN_EMAIL === userRecord.email &&
       !userRecord.customClaims?.admin

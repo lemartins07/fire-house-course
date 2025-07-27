@@ -49,12 +49,17 @@ export function AuthButtons() {
             <DropdownMenuItem asChild>
               <Link href="/my-account">My Account</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/admin-dashboard">Admin Dashboard</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/my-favourite">My Favourite</Link>
-            </DropdownMenuItem>
+            {auth.customClaims?.admin ? (
+              <DropdownMenuItem asChild>
+                <Link href="/admin-dashboard">Admin Dashboard</Link>
+              </DropdownMenuItem>
+            ) : (
+              <DropdownMenuItem asChild>
+                <Link href="/my-favourite">
+                  {`admin: ${auth.customClaims?.admin}`}My Favourite
+                </Link>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem onClick={() => auth.logout()}>
               Logout
             </DropdownMenuItem>
