@@ -55,9 +55,7 @@ export function AuthButtons() {
               </DropdownMenuItem>
             ) : (
               <DropdownMenuItem asChild>
-                <Link href="/my-favourite">
-                  {`admin: ${auth.customClaims?.admin}`}My Favourite
-                </Link>
+                <Link href="/my-favourite">My Favourite</Link>
               </DropdownMenuItem>
             )}
             <DropdownMenuItem onClick={() => auth.logout()}>
