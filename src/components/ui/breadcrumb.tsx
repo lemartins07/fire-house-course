@@ -25,6 +25,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
                 item.label
               )}
             </BreadcrumbItem>
+            {index < items.length - 1 && <BreadcrumbSeparator />}
           </React.Fragment>
         ))}
       </BreadcrumbList>
