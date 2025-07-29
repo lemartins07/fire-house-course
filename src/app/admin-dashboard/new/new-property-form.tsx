@@ -1,5 +1,8 @@
 'use client'
 
+import PropertyForm from '@/components/property-form'
+
 export default function NewPropertyForm() {
-  return <h1>NewPropertyForm</h1>
+  function handleSubmit(data: z.infer<typeof propertyDataSchema>) { }
+  return <PropertyForm handleSubmit={handleSubmit} />
 }
