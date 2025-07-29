@@ -1,4 +1,6 @@
 import { Breadcrumbs } from '@/components/ui/breadcrumb'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import NewPropertyForm from './new-property-form'
 
 export default function NewProperty() {
   const breadcrumbsItems = [
@@ -8,7 +10,14 @@ export default function NewProperty() {
   return (
     <div>
       <Breadcrumbs items={breadcrumbsItems} />
-      <h1>New Property</h1>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl font-bold">New Property</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <NewPropertyForm />
+        </CardContent>
+      </Card>
     </div>
   )
 }
