@@ -26,16 +26,16 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={`${poppins.className} antialiased`}>
-          <nav className="bg-sky-950 text-white p-5 h-24 flex items-center justify-between z-10 relative">
+          <nav className="relative z-10 flex h-24 items-center justify-between bg-sky-950 p-5 text-white">
             <Link
               href="/"
-              className="text-3xl tracking-widest flex gap-2 items-center uppercase"
+              className="flex items-center gap-2 text-3xl uppercase tracking-widest"
             >
               <HomeIcon />
               <span>Fire Homes</span>
             </Link>
 
-            <ul className="flex gap-6 items-center">
+            <ul className="flex items-center gap-6">
               <li>
                 <Link
                   href="/property-search"

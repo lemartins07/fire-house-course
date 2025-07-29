@@ -10,7 +10,7 @@ export default function NewProperty() {
   return (
     <div>
       <Breadcrumbs items={breadcrumbsItems} />
-      <Card>
+      <Card className="mt-5">
         <CardHeader>
           <CardTitle className="text-3xl font-bold">New Property</CardTitle>
         </CardHeader>

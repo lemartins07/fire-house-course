@@ -38,7 +38,7 @@ export function AuthButtons() {
               </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-sky-950 text-white border-sky-950">
+          <DropdownMenuContent className="border-sky-950 bg-sky-950 text-white">
             <DropdownMenuLabel>
               <div>{auth.currentUser.displayName}</div>
               <div className="text-xs font-normal">

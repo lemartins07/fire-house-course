@@ -19,12 +19,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select'
+import { Input } from './ui/input'
+import { Textarea } from './ui/textarea'
+import React from 'react'
+import { Button } from './ui/button'
 
 type PropertyFormProps = {
+  submitButtonLabel?: React.ReactNode
   handleSubmit: (data: z.infer<typeof propertyDataSchema>) => void
 }
 
-export default function PropertyForm({ handleSubmit }: PropertyFormProps) {
+export default function PropertyForm({
+  handleSubmit,
+  submitButtonLabel,
+}: PropertyFormProps) {
   const form = useForm<z.infer<typeof propertyDataSchema>>({
     resolver: zodResolver(propertyDataSchema),
     defaultValues: {
@@ -35,7 +43,7 @@ export default function PropertyForm({ handleSubmit }: PropertyFormProps) {
       description: '',
       status: 'draft',
       price: 0,
-      bedrooms: 1,
+      bedrooms: 0,
       bathrooms: 0,
     },
   })
@@ -43,8 +51,8 @@ export default function PropertyForm({ handleSubmit }: PropertyFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <div className="flex flex-col gap-2">
-          <fieldset>
+        <div className="grid grid-cols-2 gap-4">
+          <fieldset className="flex flex-col gap-2">
             <FormField
               control={form.control}
               name="status"
@@ -70,9 +78,125 @@ export default function PropertyForm({ handleSubmit }: PropertyFormProps) {
                   <FormMessage />
                 </FormItem>
               )}
-            ></FormField>
+            />
+
+            <FormField
+              control={form.control}
+              name="address1"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Address Line 1</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="address2"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Address Line 2</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="city"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="postcode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Postcode</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </fieldset>
+          <fieldset className="flex flex-col gap-2">
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Price</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="number" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="bedrooms"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Bedrooms</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="number" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="bathrooms"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Bathrooms</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="number" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} rows={5} className="resize-none" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </fieldset>
         </div>
+        <Button
+          type="submit"
+          className="mx-auto mt-4 flex w-full max-w-md gap-2"
+        >
+          {submitButtonLabel}
+        </Button>
       </form>
     </Form>
   )

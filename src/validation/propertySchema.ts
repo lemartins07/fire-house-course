@@ -7,12 +7,12 @@ export const propertyDataSchema = z.object({
   postcode: z.string().refine((val) => {
     // simple regex for Brazilian postal codes
     return /^[0-9]{5}-[0-9]{3}$/.test(val)
-  }, 'Invalid postcode format, expected XXXXX-XXX'),
-  price: z.number().positive(),
+  }, 'Invalid postcode format'),
+  price: z.coerce.number().positive(),
   description: z
     .string()
     .min(10, 'Description must contain at least 10 characters'),
-  bedrooms: z.number().int().min(1, 'At least 1 bedroom is required'),
-  bathrooms: z.number().int().min(0, 'At least 0 bedroom is required'),
+  bedrooms: z.coerce.number().int().min(0, 'At least 0 bedroom is required'),
+  bathrooms: z.coerce.number().int().min(0, 'At least 0 bedroom is required'),
   status: z.enum(['draft', 'for-sale', 'withdrawn', 'sold']),
 })
