@@ -7,8 +7,8 @@ export default function AdminDashboard() {
   return (
     <div>
       <Breadcrumbs items={[{ label: 'Dashboard' }]} />
-      <h1 className="text-4xl font-bold mt-6">Admin Dashboard</h1>
-      <Button asChild className="inline-flex pl-2 gap-2 mt-4">
+      <h1 className="mt-6 text-4xl font-bold">Admin Dashboard</h1>
+      <Button asChild className="mt-4 inline-flex gap-2 pl-2">
         <Link href="/admin-dashboard/new">
           <PlusCircleIcon /> New Property
         </Link>
