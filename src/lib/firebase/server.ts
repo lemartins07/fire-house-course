@@ -25,9 +25,7 @@ const serviceAccount = {
 const currentApps = getApps()
 
 const app = !currentApps.length
-  ? initializeApp({
-      credential: cert(serviceAccount as ServiceAccount),
-    })
+  ? initializeApp({ credential: cert(serviceAccount as ServiceAccount) })
   : currentApps[0]
 
 const firestore: Firestore = getFirestore(app)
