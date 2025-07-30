@@ -9,7 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from './ui/form'
-import z from 'zod'
+import { z } from 'zod'
 import { propertyDataSchema } from '@/validation/propertySchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -33,7 +33,11 @@ export default function PropertyForm({
   handleSubmit,
   submitButtonLabel,
 }: PropertyFormProps) {
-  const form = useForm<z.infer<typeof propertyDataSchema>>({
+  const form = useForm<
+    z.input<typeof propertyDataSchema>,
+    undefined,
+    z.output<typeof propertyDataSchema>
+  >({
     resolver: zodResolver(propertyDataSchema),
     defaultValues: {
       address1: '',
@@ -144,7 +148,11 @@ export default function PropertyForm({
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input {...field} type="number" />
+                    <Input
+                      {...field}
+                      value={field.value as number}
+                      type="number"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -157,7 +165,11 @@ export default function PropertyForm({
                 <FormItem>
                   <FormLabel>Bedrooms</FormLabel>
                   <FormControl>
-                    <Input {...field} type="number" />
+                    <Input
+                      {...field}
+                      value={field.value as number}
+                      type="number"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -170,7 +182,11 @@ export default function PropertyForm({
                 <FormItem>
                   <FormLabel>Bathrooms</FormLabel>
                   <FormControl>
-                    <Input {...field} type="number" />
+                    <Input
+                      {...field}
+                      value={field.value as number}
+                      type="number"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
