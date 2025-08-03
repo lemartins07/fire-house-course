@@ -1,6 +1,7 @@
 'server only'
 
 import { firestore } from '@/lib/firebase/server'
+import { Property } from '@/types/property'
 import { PropertyStatus } from '@/types/propertyStatus'
 
 type GetPropertiesOptions = {
@@ -46,10 +47,13 @@ export const getProperties = async (options?: GetPropertiesOptions) => {
     .offset((page - 1) * pageSize)
     .get()
 
-  const properties = propertiesSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }))
+  const properties = propertiesSnapshot.docs.map(
+    (doc) =>
+      ({
+        id: doc.id,
+        ...doc.data(),
+      }) as Property,
+  )
 
   return { data: properties }
 }

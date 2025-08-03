@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { getProperties } from '@/data/properties'
 import { PlusCircleIcon } from 'lucide-react'
 import Link from 'next/link'
+import PropertiesTable from './propertiesTable'
 
 export default async function AdminDashboard() {
   const properties = await getProperties()
@@ -17,6 +18,8 @@ export default async function AdminDashboard() {
           <PlusCircleIcon /> New Property
         </Link>
       </Button>
+
+      <PropertiesTable />
     </div>
   )
 }
