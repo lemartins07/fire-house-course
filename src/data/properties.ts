@@ -18,8 +18,8 @@ type GetPropertiesOptions = {
 }
 
 export const getProperties = async (options?: GetPropertiesOptions) => {
-  const pageSize = options?.pagination?.pageSize || 10
   const page = options?.pagination?.page || 1
+  const pageSize = options?.pagination?.pageSize || 10
   const { status, maxPrice, minBedrooms, minPrice } = options?.filters || {}
 
   let propertiesQuery = firestore

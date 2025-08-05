@@ -1,20 +1,27 @@
+import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
 import { getProperties } from '@/data/properties'
+import Link from 'next/link'
 
-export default async function PropertiesTable() {
+type PropertiesTableProps = {
+  page?: number
+}
+
+export default async function PropertiesTable({ page }: PropertiesTableProps) {
   const { data, totalPages } = await getProperties({
     pagination: {
-      pageSize: 2,
+      page,
+      pageSize: 5,
     },
   })
-  console.log('Total pages: ', totalPages)
   return (
     <>
       {!data && (
@@ -51,6 +58,17 @@ export default async function PropertiesTable() {
             )
           })}
         </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={4} className="text-center">
+              {Array.from({ length: totalPages }).map((_, i) => (
+                <Button key={i} asChild variant="outline" className="mx-1">
+                  <Link href={`/admin-dashboard?page=${i + 1}`}>{i + 1}</Link>
+                </Button>
+              ))}
+            </TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
     </>
   )

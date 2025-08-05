@@ -4,7 +4,19 @@ import { PlusCircleIcon } from 'lucide-react'
 import Link from 'next/link'
 import PropertiesTable from './propertiesTable'
 
-export default async function AdminDashboard() {
+type AdminDashboardProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  searchParams?: Promise<any>
+}
+
+export default async function AdminDashboard({
+  searchParams,
+}: AdminDashboardProps) {
+  const searchParamsValue = await searchParams
+  const parsedPageParams = searchParamsValue
+    ? parseInt(searchParamsValue?.page)
+    : 1
+
   return (
     <div>
       <Breadcrumbs items={[{ label: 'Dashboard' }]} />
@@ -15,7 +27,7 @@ export default async function AdminDashboard() {
         </Link>
       </Button>
 
-      <PropertiesTable />
+      <PropertiesTable page={parsedPageParams} />
     </div>
   )
 }
