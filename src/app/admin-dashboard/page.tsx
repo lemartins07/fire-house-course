@@ -5,17 +5,14 @@ import Link from 'next/link'
 import PropertiesTable from './propertiesTable'
 
 type AdminDashboardProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  searchParams?: Promise<any>
+  searchParams?: Promise<{ page?: string }>
 }
 
 export default async function AdminDashboard({
   searchParams,
 }: AdminDashboardProps) {
-  const searchParamsValue = await searchParams
-  const parsedPageParams = searchParamsValue
-    ? parseInt(searchParamsValue?.page)
-    : 1
+  const paramsValue = await searchParams
+  const page = parseInt(paramsValue?.page || '1')
 
   return (
     <div>
@@ -27,7 +24,7 @@ export default async function AdminDashboard({
         </Link>
       </Button>
 
-      <PropertiesTable page={parsedPageParams} />
+      <PropertiesTable page={page} />
     </div>
   )
 }

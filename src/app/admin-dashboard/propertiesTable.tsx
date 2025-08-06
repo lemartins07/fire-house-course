@@ -9,6 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { getProperties } from '@/data/properties'
+import { PencilIcon } from 'lucide-react'
 import Link from 'next/link'
 
 type PropertiesTableProps = {
@@ -53,7 +54,14 @@ export default async function PropertiesTable({ page }: PropertiesTableProps) {
                 <TableCell className="font-medium">{address}</TableCell>
                 <TableCell className="font-medium">{property.price}</TableCell>
                 <TableCell className="font-medium">{property.status}</TableCell>
-                <TableCell className="font-medium">view / edit</TableCell>
+                <TableCell className="font-medium">
+                  view /
+                  <Button asChild variant="outline" size="sm">
+                    <Link href={`/admin-dashboard/edit/${property.id}`}>
+                      <PencilIcon />
+                    </Link>
+                  </Button>
+                </TableCell>
               </TableRow>
             )
           })}
