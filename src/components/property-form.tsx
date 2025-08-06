@@ -27,19 +27,16 @@ import { Button } from './ui/button'
 type PropertyFormProps = {
   submitButtonLabel?: React.ReactNode
   handleSubmit: (data: z.infer<typeof propertyDataSchema>) => void
+  defaultValues?: z.infer<typeof propertyDataSchema>
 }
 
 export default function PropertyForm({
   handleSubmit,
   submitButtonLabel,
+  defaultValues,
 }: PropertyFormProps) {
-  const form = useForm<
-    z.input<typeof propertyDataSchema>,
-    undefined,
-    z.output<typeof propertyDataSchema>
-  >({
-    resolver: zodResolver(propertyDataSchema),
-    defaultValues: {
+  const combinedDefaultValues: z.infer<typeof propertyDataSchema> = {
+    ...{
       address1: '',
       address2: '',
       city: '',
@@ -50,6 +47,16 @@ export default function PropertyForm({
       bedrooms: 0,
       bathrooms: 0,
     },
+    ...defaultValues,
+  }
+
+  const form = useForm<
+    z.input<typeof propertyDataSchema>,
+    undefined,
+    z.output<typeof propertyDataSchema>
+  >({
+    resolver: zodResolver(propertyDataSchema),
+    defaultValues: combinedDefaultValues,
   })
 
   return (
