@@ -19,7 +19,7 @@ export default async function EditProperty({ params }: EditPropertyProps) {
       <Breadcrumbs
         items={[
           {
-            href: '/admin-dashboar',
+            href: '/admin-dashboard',
             label: 'Dashboard',
           },
           {
