@@ -2,12 +2,15 @@
 
 import { useAuth } from '@/context/auth'
 import { Button } from './button'
+import { useRouter } from 'next/navigation'
 
 export default function GoogleLoginButton() {
   const auth = useAuth()
+  const router = useRouter()
 
-  const handleLogin = () => {
-    auth?.loginWithGoogle()
+  const handleLogin = async () => {
+    await auth?.loginWithGoogle()
+    router.refresh()
   }
 
   return (
